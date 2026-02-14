@@ -6,78 +6,46 @@
     <title>Eslam & Ahlam Forever</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background: #000;
-            color: #fff;
-            text-align: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* نظام عرض الصور المتغيرة */
-        .background-slider {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-        }
-        .slide {
-            position: absolute;
-            width: 100%; height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 2s ease-in-out;
-        }
-        .active { opacity: 0.5; } /* وضوح الخلفية */
-
-        .content { z-index: 1; padding: 20px; }
-        .heart { font-size: 60px; animation: pulse 1.5s infinite; color: #ff4d6d; text-shadow: 0 0 20px #ff4d6d; }
-        h1 { font-size: 3rem; margin: 10px 0; text-shadow: 2px 2px 15px rgba(0,0,0,0.8); letter-spacing: 2px; }
+        body { background: #000; color: #fff; text-align: center; font-family: sans-serif; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; }
         
-        #timer { 
-            background: rgba(0, 0, 0, 0.6); 
-            padding: 25px; 
-            border-radius: 25px; 
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        .unit { display: inline-block; margin: 10px; min-width: 70px; }
-        .num { display: block; font-size: 1.8rem; font-weight: bold; color: #ff4d6d; }
-        .lab { font-size: 0.75rem; text-transform: uppercase; color: #ccc; letter-spacing: 1px; }
+        /* السلايدر */
+        .slider { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .slide { position: absolute; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 2s; }
+        .active { opacity: 0.6; }
+
+        .content { z-index: 1; background: rgba(0,0,0,0.4); padding: 30px; border-radius: 20px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1); }
+        .heart { font-size: 50px; color: #ff4d6d; animation: pulse 1.5s infinite; }
+        h1 { font-size: 2.5rem; margin: 10px 0; }
+        .timer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; }
+        .unit { background: rgba(255,255,255,0.1); padding: 10px; border-radius: 10px; }
+        .num { display: block; font-size: 1.5rem; font-weight: bold; color: #ff4d6d; }
+        .label { font-size: 0.7rem; text-transform: uppercase; }
         
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
     </style>
 </head>
 <body>
 
-    <div class="background-slider">
-        <div class="slide active" style="background-image: url('https://i.ibb.co/vzYvYvY/photo1.jpg')"></div>
-        <div class="slide" style="background-image: url('https://i.ibb.co/vzYvYvY/photo2.jpg')"></div>
-        <div class="slide" style="background-image: url('https://i.ibb.co/vzYvYvY/photo3.jpg')"></div>
-        <div class="slide" style="background-image: url('https://i.ibb.co/vzYvYvY/photo4.jpg')"></div>
-        <div class="slide" style="background-image: url('https://i.ibb.co/vzYvYvY/photo5.jpg')"></div>
+    <div class="slider">
+        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1518193583852-6466f91874f6?auto=format&fit=crop&w=1000')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1516589174184-c685266e430c?auto=format&fit=crop&w=1000')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=1000')"></div>
     </div>
 
     <div class="content">
         <div class="heart">❤️</div>
         <h1>Eslam & Ahlam</h1>
-        <p style="margin-bottom: 25px; font-size: 1.1rem; color: #eee;">Together Since 14/01/2020</p>
+        <p>Together Since 14/01/2020</p>
         
-        <div id="timer">
-            <div class="unit"><span class="num" id="y">0</span><span class="lab">Years</span></div>
-            <div class="unit"><span class="num" id="m">0</span><span class="lab">Months</span></div>
-            <div class="unit"><span class="num" id="d">0</span><span class="lab">Days</span></div>
-            <br>
-            <div class="unit"><span class="num" id="h">0</span><span class="lab">Hours</span></div>
-            <div class="unit"><span class="num" id="min">0</span><span class="lab">Mins</span></div>
-            <div class="unit"><span class="num" id="s">0</span><span class="lab">Secs</span></div>
+        <div class="timer-grid">
+            <div class="unit"><span class="num" id="y">0</span><span class="label">Years</span></div>
+            <div class="unit"><span class="num" id="m">0</span><span class="label">Months</span></div>
+            <div class="unit"><span class="num" id="d">0</span><span class="label">Days</span></div>
+            <div class="unit"><span class="num" id="h">0</span><span class="label">Hours</span></div>
+            <div class="unit"><span class="num" id="min">0</span><span class="label">Mins</span></div>
+            <div class="unit"><span class="num" id="s">0</span><span class="label">Secs</span></div>
         </div>
+        <p style="margin-top: 15px; font-size: 0.8rem; color: #aaa;">Click anywhere to play music 🎵</p>
     </div>
 
     <audio id="music" loop>
@@ -85,38 +53,30 @@
     </audio>
 
     <script>
-        // تاريخ البداية: 14 يناير 2020
         const start = new Date(2020, 0, 14, 0, 0, 0);
-
         function update() {
             const now = new Date();
             const diff = now - start;
-
-            document.getElementById('y').innerText = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
-            document.getElementById('m').innerText = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
-            document.getElementById('d').innerText = Math.floor((diff % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
-            document.getElementById('h').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById('min').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById('s').innerText = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById('y').innerText = Math.floor(diff / 31557600000);
+            document.getElementById('m').innerText = Math.floor((diff % 31557600000) / 2629800000);
+            document.getElementById('d').innerText = Math.floor((diff % 2629800000) / 86400000);
+            document.getElementById('h').innerText = Math.floor((diff % 86400000) / 3600000);
+            document.getElementById('min').innerText = Math.floor((diff % 3600000) / 60000);
+            document.getElementById('s').innerText = Math.floor((diff % 60000) / 1000);
         }
         setInterval(update, 1000);
         update();
 
-        // كود تبديل الصور تلقائياً كل 4 ثواني
-        let currentSlide = 0;
+        let cur = 0;
         const slides = document.querySelectorAll('.slide');
-        function nextSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-        setInterval(nextSlide, 4000);
+        setInterval(() => {
+            slides[cur].classList.remove('active');
+            cur = (cur + 1) % slides.length;
+            slides[cur].classList.add('active');
+        }, 4000);
 
-        // تشغيل الأغنية عند أول لمسة للشاشة
-        document.addEventListener('click', () => {
-            const audio = document.getElementById('music');
-            audio.play().catch(e => console.log("Audio play failed: ", e));
-        }, { once: true });
+        // تشغيل الأغنية لما تلمس الشاشة
+        document.addEventListener('click', () => { document.getElementById('music').play(); }, { once: true });
     </script>
 </body>
 </html>
