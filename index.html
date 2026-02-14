@@ -6,29 +6,34 @@
     <title>إسلام وأحلام للأبد</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #000; color: #fff; font-family: 'Segoe UI', Tahoma, sans-serif; text-align: center; scroll-behavior: smooth; }
+        body { background-color: #000; color: #fff; font-family: 'Segoe UI', Tahoma, sans-serif; text-align: center; }
         
-        /* القسم الأول: العداد */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(to bottom, rgba(0,0,0,0.5), #000); }
-        .heart { font-size: 70px; color: #ff4d6d; animation: pulse 1.5s infinite; text-shadow: 0 0 20px #ff4d6d; }
+        /* العداد */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(rgba(0,0,0,0.6), #000); }
+        .heart { font-size: 70px; color: #ff4d6d; animation: pulse 1.5s infinite; }
         .timer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 90%; max-width: 400px; margin-top: 25px; }
         .unit { background: rgba(255, 77, 109, 0.1); border: 1px solid rgba(255, 77, 109, 0.3); padding: 15px 5px; border-radius: 15px; }
         .num { display: block; font-size: 1.6rem; font-weight: bold; color: #ff4d6d; }
         .label { font-size: 0.7rem; color: #ccc; }
 
-        /* القسم الثاني: الصور */
+        /* الصور */
         .gallery { padding: 50px 15px; }
-        .photo-stack img { width: 100%; max-width: 350px; border-radius: 20px; margin-bottom: 20px; border: 2px solid #333; }
+        .gallery img { width: 100%; max-width: 350px; border-radius: 20px; margin-bottom: 20px; border: 2px solid #333; }
 
-        /* زر تشغيل الموسيقى */
-        #play-btn { position: fixed; bottom: 20px; right: 20px; background: #ff4d6d; color: white; border: none; padding: 15px 20px; border-radius: 50px; cursor: pointer; z-index: 1000; box-shadow: 0 0 15px #ff4d6d; font-weight: bold; }
-        
+        /* زر التشغيل */
+        #play-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; display: flex; justify-content: center; align-items: center; cursor: pointer; }
+        .play-box { padding: 20px 40px; background: #ff4d6d; border-radius: 50px; font-weight: bold; font-size: 1.2rem; box-shadow: 0 0 20px #ff4d6d; }
+
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
     </style>
 </head>
 <body>
 
-    <button id="play-btn" onclick="playMusic()">تشغيل الأغنية ❤️</button>
+    <div id="play-overlay" onclick="startEverything()">
+        <div class="play-box">اضغط هنا لفتح المفاجأة ❤️🎵</div>
+    </div>
+
+    <div id="player" style="position: absolute; top: -9999px; left: -9999px;"></div>
 
     <section class="hero">
         <div class="heart">❤️</div>
@@ -41,24 +46,19 @@
             <div class="unit"><span class="num" id="min">0</span><span class="label">دقائق</span></div>
             <div class="unit"><span class="num" id="s">0</span><span class="label">ثواني</span></div>
         </div>
-        <p style="margin-top: 40px; color: #888;">انزل لتحت لشوف صورنا 👇</p>
+        <p style="margin-top: 40px; color: #888;">انزل لتحت 👇</p>
     </section>
 
     <section class="gallery">
-        <div class="photo-stack">
-            <img src="https://i.ibb.co/20gzj26N/20gzj26N.jpg">
-            <img src="https://i.ibb.co/1td5NKW1/1td5NKW1.jpg">
-            <img src="https://i.ibb.co/9mGRcxpM/9mGRcxpM.jpg">
-            <img src="https://i.ibb.co/c7tmrY9/c7tmrY9.jpg">
-            <img src="https://i.ibb.co/Fbq4c9tQ/Fbq4c9tQ.jpg">
-        </div>
+        <img src="https://i.ibb.co/20gzj26N/20gzj26N.jpg">
+        <img src="https://i.ibb.co/1td5NKW1/1td5NKW1.jpg">
+        <img src="https://i.ibb.co/9mGRcxpM/9mGRcxpM.jpg">
+        <img src="https://i.ibb.co/c7tmrY9/c7tmrY9.jpg">
+        <img src="https://i.ibb.co/Fbq4c9tQ/Fbq4c9tQ.jpg">
     </section>
 
-    <audio id="mainMusic" loop>
-        <source src="https://www.mboxdrive.com/Amr%20Diab%20-%20Khalik%20Maaya.mp3" type="audio/mpeg">
-    </audio>
-
     <script>
+        // العداد
         const start = new Date(2020, 0, 14, 0, 0, 0);
         function update() {
             const now = new Date();
@@ -73,13 +73,32 @@
         setInterval(update, 1000);
         update();
 
-        function playMusic() {
-            const audio = document.getElementById('mainMusic');
-            audio.play();
-            document.getElementById('play-btn').style.display = 'none';
+        // كود يوتيوب
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '0',
+                width: '0',
+                videoId: 'WpAtX9vC7qE', // ID أغنية خليك معايا
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
         }
-        // تشغيل احتياطي مع أول لمسة
-        document.body.addEventListener('click', () => { playMusic(); }, { once: true });
+
+        function onPlayerReady(event) {
+            // اللاعب جاهز
+        }
+
+        function startEverything() {
+            player.playVideo();
+            document.getElementById('play-overlay').style.display = 'none';
+        }
     </script>
 </body>
 </html>
