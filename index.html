@@ -3,56 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إسلام وأحلام للأبد</title>
+    <title>إسلام وأحلام - معاً للأبد</title>
     <style>
+        /* تنسيق عام */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: #000; color: #fff; font-family: 'Segoe UI', Tahoma, sans-serif; text-align: center; }
-        
-        /* شاشة البداية لتشغيل الموسيقى */
-        #start-overlay {
+
+        /* شاشة البداية (ضرورية لتشغيل الأغنية) */
+        #overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); z-index: 10000;
-            display: flex; justify-content: center; align-items: center; cursor: pointer;
+            background: rgba(0,0,0,0.9); z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            cursor: pointer;
         }
-        .start-box { 
-            padding: 20px 40px; background: #ff4d6d; border-radius: 50px; 
-            font-weight: bold; font-size: 1.2rem; box-shadow: 0 0 30px #ff4d6d;
-            animation: bounce 2s infinite;
-        }
+        .start-btn { padding: 15px 30px; background: #ff4d6d; border-radius: 50px; font-weight: bold; box-shadow: 0 0 20px #ff4d6d; animation: pulse 1.5s infinite; }
 
         /* العداد */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(rgba(0,0,0,0.4), #000); }
-        .heart { font-size: 80px; color: #ff4d6d; animation: pulse 1.5s infinite; }
-        .timer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; width: 90%; max-width: 450px; margin-top: 25px; }
-        .unit { background: rgba(255, 77, 109, 0.15); border: 1px solid rgba(255, 77, 109, 0.4); padding: 20px 5px; border-radius: 20px; backdrop-filter: blur(5px); }
-        .num { display: block; font-size: 1.8rem; font-weight: bold; color: #ff4d6d; }
-        .label { font-size: 0.8rem; color: #eee; }
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: radial-gradient(circle, #1a0005 0%, #000 100%); }
+        .heart { font-size: 60px; color: #ff4d6d; text-shadow: 0 0 20px #ff4d6d; margin-bottom: 20px; }
+        .timer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 90%; max-width: 450px; }
+        .unit { background: rgba(255, 77, 109, 0.1); border: 1px solid #ff4d6d; padding: 15px 5px; border-radius: 15px; }
+        .num { display: block; font-size: 1.5rem; font-weight: bold; color: #ff4d6d; }
+        .label { font-size: 0.7rem; color: #ccc; }
 
         /* معرض الصور بجودة عالية */
-        .gallery { padding: 60px 15px; background: #000; }
-        .gallery h2 { margin-bottom: 30px; color: #ff4d6d; font-size: 1.8rem; }
-        .photo-list { display: flex; flex-direction: column; gap: 30px; align-items: center; }
+        .gallery { padding: 50px 10px; }
+        .gallery h2 { color: #ff4d6d; margin-bottom: 30px; }
         .photo-list img { 
-            width: 100%; max-width: 450px; border-radius: 25px; 
-            border: 2px solid #222; box-shadow: 0 10px 40px rgba(255, 77, 109, 0.2);
-            object-fit: cover;
+            width: 100%; max-width: 500px; border-radius: 15px; margin-bottom: 25px; 
+            border: 2px solid #222; box-shadow: 0 5px 15px rgba(255, 77, 109, 0.2);
+            image-rendering: -webkit-optimize-contrast; /* لتحسين الوضوح */
         }
 
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
     </style>
 </head>
 <body>
 
-    <div id="start-overlay" onclick="initPage()">
-        <div class="start-box">اضغط هنا لفتح عالمنا ❤️🎵</div>
+    <div id="overlay" onclick="startStory()">
+        <div class="heart">❤️</div>
+        <div class="start-btn">اضغط هنا لفتح عالمنا</div>
     </div>
-
-    <div id="yt-player" style="position: absolute; top: -9999px; left: -9999px;"></div>
 
     <section class="hero">
         <div class="heart">❤️</div>
-        <h1 style="margin: 20px 0; font-size: 2.2rem;">إسلام & أحلام</h1>
+        <h1 style="margin-bottom: 30px;">إسلام & أحلام</h1>
         <div class="timer-grid">
             <div class="unit"><span class="num" id="y">0</span><span class="label">سنين</span></div>
             <div class="unit"><span class="num" id="m">0</span><span class="label">شهور</span></div>
@@ -61,22 +56,26 @@
             <div class="unit"><span class="num" id="min">0</span><span class="label">دقائق</span></div>
             <div class="unit"><span class="num" id="s">0</span><span class="label">ثواني</span></div>
         </div>
-        <p style="margin-top: 50px; color: #ff4d6d; font-weight: bold;">انزل لتحت لرؤية ذكرياتنا 👇</p>
+        <p style="margin-top: 50px; color: #888;">انزل لتحت للصور والفيديو 👇</p>
     </section>
 
     <section class="gallery">
-        <h2>أجمل لحظاتنا ✨</h2>
+        <h2>ذكرياتنا الجميلة ✨</h2>
         <div class="photo-list">
-            <img src="https://i.ibb.co/vzYvYvY/20gzj26N.jpg" alt="Memory 1">
-            <img src="https://i.ibb.co/vzYvYvY/1td5NKW1.jpg" alt="Memory 2">
-            <img src="https://i.ibb.co/vzYvYvY/9mGRcxpM.jpg" alt="Memory 3">
-            <img src="https://i.ibb.co/vzYvYvY/c7tmrY9.jpg" alt="Memory 4">
-            <img src="https://i.ibb.co/vzYvYvY/Fbq4c9tQ.jpg" alt="Memory 5">
+            <img src="https://i.ibb.co/20gzj26N/20gzj26N.jpg" alt="1">
+            <img src="https://i.ibb.co/1td5NKW1/1td5NKW1.jpg" alt="2">
+            <img src="https://i.ibb.co/9mGRcxpM/9mGRcxpM.jpg" alt="3">
+            <img src="https://i.ibb.co/c7tmrY9/c7tmrY9.jpg" alt="4">
+            <img src="https://i.ibb.co/Fbq4c9tQ/Fbq4c9tQ.jpg" alt="5">
         </div>
     </section>
 
+    <audio id="loveAudio" loop>
+        <source src="https://cdn.top4top.io/d_22097e88c71.mp3" type="audio/mpeg">
+    </audio>
+
     <script>
-        // عداد الوقت المنقضي
+        // العداد الزمني
         const startDate = new Date(2020, 0, 14, 0, 0, 0);
         function updateTimer() {
             const now = new Date();
@@ -91,7 +90,11 @@
         setInterval(updateTimer, 1000);
         updateTimer();
 
-        // تهيئة يوتيوب
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag
+        // وظيفة البدء
+        function startStory() {
+            document.getElementById('loveAudio').play();
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
