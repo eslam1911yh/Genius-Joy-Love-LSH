@@ -1,58 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eslam & Ahlam Forever</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #000; color: #fff; text-align: center; font-family: sans-serif; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        
-        /* السلايدر */
-        .slider { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-        .slide { position: absolute; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 2s; }
-        .active { opacity: 0.6; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { background: #000; color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; }
 
-        .content { z-index: 1; background: rgba(0,0,0,0.4); padding: 30px; border-radius: 20px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1); }
-        .heart { font-size: 50px; color: #ff4d6d; animation: pulse 1.5s infinite; }
-        h1 { font-size: 2.5rem; margin: 10px 0; }
-        .timer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; }
-        .unit { background: rgba(255,255,255,0.1); padding: 10px; border-radius: 10px; }
-        .num { display: block; font-size: 1.5rem; font-weight: bold; color: #ff4d6d; }
-        .label { font-size: 0.7rem; text-transform: uppercase; }
+        /* القسم الأول: العداد */
+        .section-timer {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1518193583852-6466f91874f6?q=80&w=1000');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .heart { font-size: 60px; color: #ff4d6d; animation: pulse 1.5s infinite; }
+        h1 { font-size: 3rem; margin: 10px 0; text-shadow: 2px 2px 10px #000; }
         
+        .timer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 25px; width: 90%; max-width: 500px; }
+        .unit { background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1); }
+        .num { display: block; font-size: 1.8rem; font-weight: bold; color: #ff4d6d; }
+        .label { font-size: 0.8rem; text-transform: uppercase; color: #ccc; }
+
+        /* القسم الثاني: معرض الصور */
+        .section-photos { padding: 80px 20px; background: #0a0a0a; text-align: center; }
+        .section-title { font-size: 2rem; margin-bottom: 40px; color: #ff4d6d; }
+        .photo-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        .photo-container img { width: 100%; max-width: 300px; border-radius: 15px; border: 3px solid #1a1a1a; transition: 0.3s; }
+        .photo-container img:hover { transform: scale(1.05); border-color: #ff4d6d; }
+
+        /* القسم الثالث: الفيديو */
+        .section-video { padding: 80px 20px; background: #000; text-align: center; }
+        video { width: 90%; max-width: 800px; border-radius: 20px; box-shadow: 0 0 30px rgba(255, 77, 109, 0.3); }
+
+        #play-hint { position: fixed; bottom: 20px; right: 20px; background: #ff4d6d; padding: 10px 20px; border-radius: 50px; cursor: pointer; z-index: 100; font-weight: bold; animation: bounce 2s infinite; }
+
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
     </style>
 </head>
 <body>
 
-    <div class="slider">
-        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1518193583852-6466f91874f6?auto=format&fit=crop&w=1000')"></div>
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1516589174184-c685266e430c?auto=format&fit=crop&w=1000')"></div>
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=1000')"></div>
-    </div>
+    <div id="play-hint" onclick="playMusic()">شغل الأغنية 🎵</div>
 
-    <div class="content">
+    <section class="section-timer">
         <div class="heart">❤️</div>
-        <h1>Eslam & Ahlam</h1>
-        <p>Together Since 14/01/2020</p>
-        
+        <h1>إسلام & أحلام</h1>
+        <p>بدأت حكايتنا في 14/01/2020</p>
         <div class="timer-grid">
-            <div class="unit"><span class="num" id="y">0</span><span class="label">Years</span></div>
-            <div class="unit"><span class="num" id="m">0</span><span class="label">Months</span></div>
-            <div class="unit"><span class="num" id="d">0</span><span class="label">Days</span></div>
-            <div class="unit"><span class="num" id="h">0</span><span class="label">Hours</span></div>
-            <div class="unit"><span class="num" id="min">0</span><span class="label">Mins</span></div>
-            <div class="unit"><span class="num" id="s">0</span><span class="label">Secs</span></div>
+            <div class="unit"><span class="num" id="y">0</span><span class="label">سنة</span></div>
+            <div class="unit"><span class="num" id="m">0</span><span class="label">شهر</span></div>
+            <div class="unit"><span class="num" id="d">0</span><span class="label">يوم</span></div>
+            <div class="unit"><span class="num" id="h">0</span><span class="label">ساعة</span></div>
+            <div class="unit"><span class="num" id="min">0</span><span class="label">دقيقة</span></div>
+            <div class="unit"><span class="num" id="s">0</span><span class="label">ثانية</span></div>
         </div>
-        <p style="margin-top: 15px; font-size: 0.8rem; color: #aaa;">Click anywhere to play music 🎵</p>
-    </div>
+        <p style="margin-top: 30px; font-size: 0.9rem; color: #888;">انزل لتحت لشوف الصور والفيديو 👇</p>
+    </section>
 
-    <audio id="music" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <section class="section-photos">
+        <h2 class="section-title">ذكرياتنا الجميلة ✨</h2>
+        <div class="photo-container">
+            <img src="https://i.ibb.co/20gzj26N/20gzj26N.jpg" alt="Photo 1">
+            <img src="https://i.ibb.co/1td5NKW1/1td5NKW1.jpg" alt="Photo 2">
+            <img src="https://i.ibb.co/9mGRcxpM/9mGRcxpM.jpg" alt="Photo 3">
+            <img src="https://i.ibb.co/c7tmrY9/c7tmrY9.jpg" alt="Photo 4">
+            <img src="https://i.ibb.co/Fbq4c9tQ/Fbq4c9tQ.jpg" alt="Photo 5">
+        </div>
+    </section>
+
+    <section class="section-video">
+        <h2 class="section-title">فيديو خاص 🎥</h2>
+        <video controls playsinline>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-stars-in-the-night-sky-loop-9948-large.mp4" type="video/mp4">
+            عفواً، متصفحك لا يدعم تشغيل الفيديو.
+        </video>
+    </section>
+
+    <audio id="bgMusic" loop>
+        <source src="https://cdn.top4top.io/d_22097e88c71.mp3" type="audio/mpeg">
     </audio>
 
     <script>
+        // العداد
         const start = new Date(2020, 0, 14, 0, 0, 0);
         function update() {
             const now = new Date();
@@ -67,16 +103,12 @@
         setInterval(update, 1000);
         update();
 
-        let cur = 0;
-        const slides = document.querySelectorAll('.slide');
-        setInterval(() => {
-            slides[cur].classList.remove('active');
-            cur = (cur + 1) % slides.length;
-            slides[cur].classList.add('active');
-        }, 4000);
-
-        // تشغيل الأغنية لما تلمس الشاشة
-        document.addEventListener('click', () => { document.getElementById('music').play(); }, { once: true });
+        // تشغيل الموسيقى
+        function playMusic() {
+            const audio = document.getElementById('bgMusic');
+            audio.play();
+            document.getElementById('play-hint').style.display = 'none';
+        }
     </script>
 </body>
 </html>
