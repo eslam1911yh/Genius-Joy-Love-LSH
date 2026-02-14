@@ -1,253 +1,35 @@
-<!--Hello digital composer! Welcome to our Genius, Joy and Love Webtext. Just follow along and with comments like this, and you'll make a really cool web document that helps you process, package, and circulate your learning experience. Through the process, you'll learn a little bit about coding and computer science.-->
-
-<!--When browsers access a web url, this index.html document is the first document it reads. The index.html serves as a roadmap for all of the information that the browser assembles on a screen. See if you can figure out what these two first lines of code are saying?-->
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<!--The <head> content organizes important information needed to assemble a web page, starting with the page title.-->
-<title>Genius, Joy and Love</title>
-<!--This next stuff below does important work to help tell different browsers what this page should look like on different screens like cell phones or desktops. Adaptability is important for accesibility purposes.-->
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--Next is a link to the cascading style sheet or style.css file. Web designers use a cascading stylesheet to add styling to a website. Designers do this by "calling" a "class" in HTML and defining the class attributes on the style sheet. Doing so saves time and results in less code. On the style.css page you'll find attributes relating to font, text size, image size, among other details.-->
-<link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eslam & Ahlam Forever</title>
+    <style>
+        body { background: #000; color: #ff4d6d; text-align: center; font-family: 'Arial', sans-serif; display: flex; flex-direction: column; justify-content: center; height: 100vh; margin: 0; }
+        .heart { font-size: 60px; animation: pulse 1.5s infinite; }
+        h1 { color: #fff; font-size: 2.5rem; margin: 10px 0; }
+        #timer { font-size: 1.4rem; background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; margin: 20px; display: inline-block; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+    </style>
 </head>
-
-<!--Now we're working in the body of the document. This is all the content we see on our page.-->
 <body>
-
-<!--Let's start with the first thing that shows up on the screen, "the Hero Block." Replace the project title and add your name. You don't need to do anything with the else with the code, but you do need to know that the style.css sheet controls and animates the hero image. To change the hero image, just add another jpg image to your project folder and rename it "hero.jpg".-->
-
-<div class="hero-image">
-  <div class="hero-text">
-      <h1>Genius, Joy and Love Summer Institute</h1>
-      <h6>LaVarr Stephens-Howling</h6>
-  </div>
-</div>
-
-<!--In this next section we'll add content to explain to our viewer who we are and how we found ourselves at the Summer Institute.-->
-
-<div class="textblock" style="text-align: left">
-  <h2>An educator in search of...</h2>
-    <h3>Genius, Joy, and Love in education. My Name is LaVarr Stephens-Howling. I am a Middle School School Counselor with 8 years of experience. I am from Johnstown, Pa and currently work at Ryan Gloyer Middle School in The Seneca Valley School District.  I am inspired to find ways to provide a school experience for all students to ensure they feel seen and heard within our school district. </h3>
-    </div>
-  
-       <div class="imgageblock">
-         <img src="Iam Poem.png" alt="Iam Poem- By LaVarr Stephens-Howling" style="width:50%;" class= "Center">
-          <p style="text-align: center"><em></em></p>
-     </div>
-
-<!--Replace the image here. You can also control image width and height %.-->
-<img src="hero.jpeg" alt="Entrance of Ryan Gloyer Middle School ribbon cutting ceremony 2017" style="width:100%;" class="center-img">
-<p style="text-align: center"><em>Ryan Gloyer Middle School, Harmony, PA.</em></p>
-
-<!--Don't worry! You can't break this thing! Right? Control Z. Control Z. Control Z...-->
-
-<div class="textblock" style="text-align: left">
-    <h2>The Genius, Joy and Love Summer Institute</h2>
-
-    <h3>GENIUS - It has been a great experience developing an understanding of the GENIUS that all children hold.  I am leaving the institue truly believing that all students are geniuses and it is our role as educators to cultivate that GENIUS. </h3>
-    
-    <h3> JOY- Talking about JOY is one thing, expericing it with like minded Educators is another! The experience has shown me the way through true learning and understanding is by experiencing JOYy in the work that we do.  We must ensure that students feel JOY throughout their learning to enhance their understanding.</h3></br>
-    
-    <h3>LOVE - Students have a need to feel loved.  We must do that by ensuring that all students feel seen and heard through curriculum and extra learning opportunities. </h3>
+    <div class="heart">❤️</div>
+    <h1>Eslam & Ahlam</h1>
+    <div id="timer">
+        Together Since 14/01/2020 <br>
+        <span id="counter" style="color: #ff4d6d; font-weight: bold;">Calculating...</span>
     </div>
 
-
-    <!--Add more photos to your project folder for a  grid, making sure the files end in .jpg or .png and replace/add to the names on the grid below on this html file. You can add more images if you wish, or subtract...see what happens--you have to be playful to find out how things work.-->
-
- <div class="photogrid">
-        <div class="row">
-      <div class="column">
-        <img src="grid5.jpg" alt= "describe image here for accessibility issues">
-        <img src="Grid1.jpg" alt= "desce mage here for accessibility issues">
-            </div>
-    <div class="column">
-        <img src="grid2.jpg" alt= "describe image here for accessibility issues">
-        <img src="grid3.jpg" alt= "describe image here for accessibility issues">
-            </div>
-    <div class="column">
-        <img src="grid4.jpg" alt= "describe image here for accessibility issues">
-        <img src="grid6.jpg" alt= "describe image here for accessibility issues" >
-
-      </div>
-         </div>
-         <p><em>Educators showing Genius, Love, and Joy</em></p>
-            </div>
-
-
-
-
-
-      <!--Replace the image here. You can also control image width and height %.-->
-
-<img src="p2.jpg" alt="describe the image HERE for accessibility purposes" style="width:100%;" class="center-img">
-      <p style="text-align: center"><em>Add a caption.</em></p>
-
-
-
-    <div class="textblock" style="text-align: left">
-        <h2>Moving Forward</h2>
-
-    <h3>The Genius, Joy, and Love Institute has made a great impact on me as an educator.  During the two-week institute, I have been challenged to think about Equity and Justice within the school setting and the role I play as an educator.  The Institute challenged me to first think of all students as geniuses.  To me this means to value all students for what they bring to my school.  Additionally, when I think of students being geniuses, I see them as being capable and ready to learn at a high standard.  I want to empower our students of color and students in marginalized groups to achieve at a high level while receiving the love and support needed from educators. My first goal is to continue to grow in my school counseling practices.  In meeting with students, I will evaluate their level of joy and love they feel while in our school.  Additionally, I will think of how teachers observe our students.  Do teachers see all students as geniuses?  Do teachers know what makes each individual student a genius? The interactions with students at the Institute showed me how important that connection with educators can be.  I will continue to build strong relationships with students.  My next goal is to use what I learned to help shape school Climate.  I believe in centering joy as an importance in our school will aid in creating a school climate that feels safe and makes students want to learn.  I would promote opportunities for teachers to promote joy within their classroom, as well as, school-wide programing that could do the same for the entire school.  Additionally, I will promote love within my school.  I will work with teachers are how to make connections with students and advocate for more time to do so.  My final goal will be promoting student organizations that promote diversity and inclusion.  Being an advisor to organizations is very important to me and I want to continue to give students the power to use their voices.  Through this institute, I have learned to take programming the next level by designing projects that bring social consciousness and critical consciousness to the student’s awareness. Additionally, I have been empowered to promote critical thinking skills around equity and justice into student organizations through difficult conversations and discussions.  Overall, The Genius, Joy, and Love Institute has inspired me to be a better educator by putting equity and justice in the forefront of the work that I do as a school counselor.   </h3>
-    </div>
-    <!--Parallax images are styled on the style.css page in your files. To change this image, go to your project file folder and replace p4.jpg with an image of your own. -->
-
-  <div class="parallax"></div>
-
-
-
-  <div id="logo">
-          <img src="p3.jpg" alt="describe the image HERE for accessibility purposes" style="max-width:25%;max-height:25%;">
-          <img src="p4.jpg" alt="describe the image HERE for accessibility purposes" style="max-width:25%;max-height:25%;">
-          <p><b>generated by <a href="https://pitt-fuego.github.io/Pitt-Fuego-Coding-Tools/">Pitt Fuego</a></b></p>
-          <p><em>Why make a spark when you can light a fire?</em></p>
-  </div>
-
-
-  </body>
-     </html>
-
-
-
-
-
-     <!--Looking to add components? You've come to the right place. Copy and paste Code Snippets and add to the body section. Adjust class properties on style.css.
-
-
-     ***Add Text Block***
-
-     (Format textblock using inline styling: text-align: left, center, justify, right; Format text: Italics: <em>italics</em>; Bold: <b>bold</b>; Link Website: <a href="link">LinkName</a>; Link Asset: <a href=filename.pdf>FileName</a>; Line Breaks: <br></br>)
-
-     (use <h3> header and <p> for longer content)
-
-     <div class="textblock" style="text-align: left">
-         <h2>Header</h2>
-         <h3>We recommend using our mobile-ready text sizing. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h3>
-     </div>
-
-
-
-     ***Add Block Quote***
-
-     (Format text: Italics: <em>italics</em>; Bold: <b>bold</b>. For more stylings, find blockquote class on style.css)
-
-     <div class="blockquote" style="text-align: center">
-         <h2>Excepteur sint occaecat cupidatat non proident!</h2>
-     </div>
-
-
-
-     ***Add Bulleted Points to Textblock***
-
-     (Change <ul></ul> to <ol></ol> to change from unordered list to ordered list. For more stylings, find the ul/li classes on style.css)
-
-     <div class= "ul">
-             <li>first</li>
-             <li>second</li>
-             <li>third</li>
-     </div>
-
-     -or- (try a nested list)
-
-     <div class="ul">
-         <li>Coffee</li>
-         <li>Tea
-           <ul>
-             <li>Black tea</li>
-             <li>Green tea</li>
-           </ul>
-          </li>
-         <li>Milk</li>
-      </div>
-
-
-
-      ***Add a Button***
-
-      (Clearly label button for accessibility purposes. If this is not possible, include: aria-label=”label for accessibility purposes.” For more stylings, find button class on style.css)
-
-      <div class="buttonbox">
-         <a href="https://pitt-fuego.github.io/Pitt-Fuego-Coding-Tools/" class="button" aria-label="">Button</a>
-      </div>
-
-
-
-
-     ***Embed YouTube Video***
-
-     <div class="video">
-       <div class="video-container">
-         <iframe src="https://www.youtube.com/embed/VIDEO ID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-     </div>
-         <p>Add a caption.</p>
-     </div>
-
-
-
-     ***Add a Standard Image***
-
-     (Control image properties with inline width value.)
-
-     <img src="fuego.jpg" alt="describe the image HERE for accessibility purposes" style="width:30%;" class="center-img">
-     <p style="text-align: center"><em>Add a caption.</em></p>
-
-
-
-     ***Add Image Block with Padding and Caption*** (Control image properties with inline width value.)
-
-     <div class="imgageblock">
-         <img src="fuego.jpg" alt="describe the image HERE for accessibility purposes" style="width:100%;">
-          <p style="text-align: center"><em>Add a caption.</em></p>
-     </div>
-
-
-
-     ***Add a Photo Grid***
-
-     <div class="photogrid">
-     <div class="row">
-         <div class="column">
-             <img src="pgrid1.jpg" alt="describe the image HERE for accessibility purposes">
-             <img src="pgrid2.jpg" alt="describe the image HERE for accessibility purposes">
-         </div>
-         <div class="column">
-             <img src="pgrid3.jpg" alt="describe the image HERE for accessibility purposes">
-             <img src="pgrid4.jpg" alt="describe the image HERE for accessibility purposes">
-         </div>
-         <div class="column">
-             <img src="pgrid5.jpg" alt="describe the image HERE for accessibility purposes">
-             <img src="pgrid6.jpg" alt="describe the image HERE for accessibility purposes">
-         </div>
-     </div>
-         <p><em>Add a caption.</em></p>
-     </div>
-
-
-
-     ***Add a Parallax Window***
-
-     (To adjust window, find parallax class on style.css)
-
-     <div class="parallax"></div>
-
-
-
-     ***Add a Copyright Footer***
-
-     <div id="footer">
-       <p>Copyright Your Name, Year.</p>
-     </div>
-
-
-
-
-     ***Need something that's not here? Then you probably don't need it. But okay...go to w3 Schools***
-
-
-
-     Looking to publish this webtext in GitHub? Here are your next steps:
-
-     Sign in to GitHub. Create a new repository. Name it. Click “uploading an existing file,” then select/drag and drop all of your files... all of them, index.html. style.css, readme, and your image assets. Click "commit." Now go to your repository "settings." Scroll down to "Pages." Here you will change "source" from "none" to "main" branch. This will publish your webtext online. Copy your URL from this settings page...and now it's time to circulate your webtext! Peace and love only, Stephen Quigley, University of Pittsburgh, 2021.-->
+    <script>
+        const startDate = new Date(2020, 0, 14); // تاريخكم المظبوط
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('counter').innerText = days + " Days of Love";
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+</body>
+</html>
